@@ -1,6 +1,4 @@
-body{
-    background-color: white;
-}
+
 
 #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -24,4 +22,12 @@ h3 {
   }
 a {
     color: #42b983;
+}
+
+td, th{
+    border: solid 1px black;
+}
+
+table{
+    border-collapse: separate;
 }
