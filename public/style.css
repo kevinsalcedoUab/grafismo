@@ -1,33 +1,92 @@
+@font-face {
+  font-family: "Gibson"; 
+  src: url("https://lvp-fonts.s3-eu-west-1.amazonaws.com/Gibson/GibsonRegular.woff") format('woff');
+}
+@font-face {
+  font-family: "Gibson";
+  src: url("https://lvp-fonts.s3-eu-west-1.amazonaws.com/Gibson/GibsonBoldIt.woff") format('woff');
+  font-weight: bold;
+}
 
-
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Gibson";
+  font-weight: regular;
+}
 #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    margin-top: 60px;
 }
 
-h3 {
-    margin: 40px 0 0;
-  }
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  li {
-    display: inline-block;
-    margin: 0 10px;
-  }
-a {
-    color: #42b983;
+th{
+  font-family: "Gibson";
+  font-weight: bold;
 }
 
-td, th{
-    border: solid 1px black;
+/* LOWER COMPONENT */
+#lower{
+    position: relative;
+    left: 16%;
+    top: 76.5%;
+    color: white;
+    width: 68.5%;
+    height: 20%;
 }
 
-table{
-    border-collapse: separate;
+#lower th{
+  height: 100%;
+  padding: 15px;
+}
+
+progress{
+  -webkit-appearance: none;
+  width: 450px;
+}
+::-webkit-progress-value {
+  background-color: green;
+}
+#lowerCapsule{
+  width: 1920px;
+  height: 1080px;
+  position: absolute;
+  top:0; 
+  background-image: url(img/lower.png);
+  z-index: -1;
+}
+
+#playerPhoto{
+  height: 200px;
+  position: relative;
+}
+
+#playerChamp{
+  height: 200px;
+}
+
+#photoCap{
+  height: 30px;
+}
+.col1 {
+  text-align: right;
+}
+.col2, .col3{
+  text-align: left;
+}
+/* TABLE PLAYERS COMPONENT */
+#tPlayers{
+  background-color: #05059b;
+  border: none;
+  border-collapse: collapse;
+  color: white;
+  position: absolute;
+  top: 30%;
+}
+#tPlayers td, #tPlayers th{
+  padding: 5px;
+  border-left: white solid 1px;
+  border-right: white solid 1px;
+}
+#tPlayers td{
+  background-color: #000058;
 }

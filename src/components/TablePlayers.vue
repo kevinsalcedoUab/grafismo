@@ -1,6 +1,6 @@
 <template>
     <div>
-        <table>
+        <table id = "tPlayers">
             <thead>
                 <tr>
                     <th  v-for="(team, index) in listTeams" :key="index">{{team}}</th>
@@ -30,12 +30,6 @@ export default {
     name: 'TablePlayers',
     data: function(){
         return {
-            maxMetrics: {
-                kda: 0,
-                csMin: 0,
-                goldMin: 0,
-                dmgMin: 0,
-            },
             players: {},
             teams: [], //name, id, players[nickname]
             listTeams: [],
@@ -47,7 +41,6 @@ export default {
         .then(response => response.json())
         .then(data => {
                 const players = data.data;
-                this.getMaxMetrics();
                 this.savePlayersOnTeam(players);
             }
         );
@@ -58,16 +51,6 @@ export default {
         },
         getIDfromNickname: function(nickname){
             return this.players[nickname]
-        },
-        getMaxMetrics: function(){
-            fetch("https://streaming.lvp.global/api/stats?url=https://api.lvp.global/lol/v1/competitions/"+this.competitionID+"/player-metrics-ladder")
-            .then(response => response.json())
-            .then(data => {
-                    this.maxMetrics.kda = data.data.kda;
-                    this.maxMetrics.csMin = data.data.creepsPerMinute;
-                    this.maxMetrics.goldMin = data.data.goldPerMinute;
-                    this.maxMetrics.dmgMin = data.data.damagePerMinute;
-            })
         },
         addPlayerToTeam: function(nameTeam, player){
             var i;
