@@ -1,31 +1,30 @@
 <template>
     <div>
-        <table id = "tPlayers">
-            <thead>
-                <tr>
-                    <th  v-for="(team, index) in listTeams" :key="index">{{team}}</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(column, indexColumn) in listTeams" :key="indexColumn">
-                    <td v-for="(team, indexTeams) in teams" :key="indexTeams" 
-                    v-on:click="showInfoPlayer(team.players[indexColumn])">
-                    {{team.players[indexColumn]}}
-                    </td>
-                </tr>
-            </tbody>
+        <div id="players-hover" @click="state = !state">PLAYERS</div>
+        <transition name="table-animation">
+            <table id = "tPlayers" v-if="state">
+                <thead>
+                    <tr>
+                        <th  v-for="(team, index) in listTeams" :key="index">{{team}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(column, indexColumn) in listTeams" :key="indexColumn">
+                        <td v-for="(team, indexTeams) in teams" :key="indexTeams" 
+                        v-on:click="showInfoPlayer(team.players[indexColumn])">
+                        {{team.players[indexColumn]}}
+                        </td>
+                    </tr>
+                    
+                </tbody>
             
-        </table>
+            </table>
+        </transition>
     </div>
 
 </template>
 
 <script>
-//SANDER 42
-//KDA: kda 4  --- 10.1
-//CS/MIN: creepsPerMinute 6.9 --- 9.3
-//GOLD/MIN goldPerMinute 363.8  --- 465.4
-//DMG/MIN damagePerminute 371.1  --- 699.2
 export default {
     name: 'TablePlayers',
     data: function(){
@@ -34,6 +33,7 @@ export default {
             teams: [], //name, id, players[nickname]
             listTeams: [],
             competitionID: 'a3141008-3e14-11eb-892c-065e1d3d7cd4',
+            state: false,
         }
     },
     created: function(){
@@ -46,12 +46,25 @@ export default {
         );
     },
     methods: {
+        /**
+        * Send ID's player selected to Lower Component 
+        * @param {String} nickname
+        */
         showInfoPlayer: function(nickname){
             this.$emit('newPlayer', this.getIDfromNickname(nickname));
         },
+        /**
+        * get ID's player of List of players
+        * @param {String} nickname
+        */
         getIDfromNickname: function(nickname){
             return this.players[nickname]
         },
+        /**
+        * Add a new player in a existing team
+        * @param {String} nameTeam
+        * @param {object} player
+        */
         addPlayerToTeam: function(nameTeam, player){
             var i;
             for (i = 0; i < this.teams.length; i++) {
@@ -60,6 +73,10 @@ export default {
                 }
             }
         },
+        /**
+        * Save a new player of API inside Component
+        * @param {object} players
+        */
         savePlayersOnTeam(players){
             players.forEach((player) => {
                 let playerID = player.player.id;

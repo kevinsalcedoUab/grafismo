@@ -13,15 +13,36 @@ body {
   padding: 0;
   font-family: "Gibson";
   font-weight: regular;
+  background-color: green;
 }
 #app {
     text-align: center;
     color: #2c3e50;
 }
 
-th{
+th {
   font-family: "Gibson";
   font-weight: bold;
+}
+
+#players-hover{
+  font-family: "Gibson";
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  width: 100px;
+  height: auto;
+  position: relative;
+  top: 260px;
+  left: 5px;
+  background-color: #05059b;
+  color: white;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+}
+#players-hover:hover{
+  background-color: #000058;
 }
 
 /* LOWER COMPONENT */
@@ -71,8 +92,29 @@ progress{
   text-align: right;
 }
 .col2, .col3{
-  text-align: left;
+  text-align: center;
 }
+
+.lower-animation{
+  position: relative;
+}
+.lower-animation-enter-active{
+  animation: lower-in 1s;
+}
+.lower-animation-leave-active{
+  animation: lower-in 1s reverse;
+}
+@keyframes lower-in{
+  0% {
+    top: 30%;
+    opacity: 0;
+  }
+  100%{
+    top: 0%;
+    opacity: 1;
+  }
+}
+
 /* TABLE PLAYERS COMPONENT */
 #tPlayers{
   background-color: #05059b;
@@ -89,4 +131,19 @@ progress{
 }
 #tPlayers td{
   background-color: #000058;
+}
+
+.table-animation-enter-active{
+  animation: table-in 1s;
+}
+.table-animation-leave-active{
+  animation: table-in 1s reverse;
+}
+@keyframes table-in{
+  0% {
+    left: -100%;
+  }
+  100%{
+    left: 0%;
+  }
 }
